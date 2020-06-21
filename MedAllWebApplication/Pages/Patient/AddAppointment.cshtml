@@ -1,0 +1,37 @@
+﻿@page
+@model MedAllWebApplication.Pages.Patient.AddAppointmentModel
+@{
+    ViewData["Title"] = "AddAppointment";
+}
+
+<h1>AddAppointment</h1>
+<form>
+    <p>
+        First Name: <input type="text" asp-for="FirstName" />
+    </p>
+    <p>
+        Last Name: <input type="text" asp-for="LastName" />
+    </p>
+
+
+    <label for="doctor">Choose a doctor:</label>
+
+    <select name="doctor" asp-for="ChosenDoctor">
+        @foreach (var item in Model.Doctors)
+        {
+            <option>
+                @Html.DisplayFor(modelItem => item.FirstName)
+                @Html.DisplayFor(modelItem => item.LastName)
+            </option>
+        }
+    </select>
+
+    <p>
+        Date and time:
+        <input type="datetime-local" asp-for="ChosenDate">
+    </p>
+    <p>
+        <input type="submit" value="Submit">
+    </p>
+</form>
+

@@ -1,0 +1,496 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="MedAllModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="MedAllModelStoreContainer">
+    <EntitySet Name="Patients" EntityType="MedAllModel.Store.Patients" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Doctors" EntityType="MedAllModel.Store.Doctors" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Admins" EntityType="MedAllModel.Store.Admins" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Users" EntityType="MedAllModel.Store.Users" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Appointments" EntityType="MedAllModel.Store.Appointments" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Roles" EntityType="MedAllModel.Store.Roles" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Rooms" EntityType="MedAllModel.Store.Rooms" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="PatientDoctor" EntityType="MedAllModel.Store.PatientDoctor" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="DoctorRoom" EntityType="MedAllModel.Store.DoctorRoom" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_PatientDoctor_Patient" Association="MedAllModel.Store.FK_PatientDoctor_Patient">
+      <End Role="Patient" EntitySet="Patients" />
+      <End Role="PatientDoctor" EntitySet="PatientDoctor" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PatientDoctor_Doctor" Association="MedAllModel.Store.FK_PatientDoctor_Doctor">
+      <End Role="Doctor" EntitySet="Doctors" />
+      <End Role="PatientDoctor" EntitySet="PatientDoctor" />
+    </AssociationSet>
+    <AssociationSet Name="AppointmentPatient" Association="MedAllModel.Store.AppointmentPatient">
+      <End Role="Appointment" EntitySet="Appointments" />
+      <End Role="Patient" EntitySet="Patients" />
+    </AssociationSet>
+    <AssociationSet Name="RoleUser" Association="MedAllModel.Store.RoleUser">
+      <End Role="Role" EntitySet="Roles" />
+      <End Role="User" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="AppointmentDoctor" Association="MedAllModel.Store.AppointmentDoctor">
+      <End Role="Appointment" EntitySet="Appointments" />
+      <End Role="Doctor" EntitySet="Doctors" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DoctorRoom_Doctor" Association="MedAllModel.Store.FK_DoctorRoom_Doctor">
+      <End Role="Doctor" EntitySet="Doctors" />
+      <End Role="DoctorRoom" EntitySet="DoctorRoom" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DoctorRoom_Room" Association="MedAllModel.Store.FK_DoctorRoom_Room">
+      <End Role="Room" EntitySet="Rooms" />
+      <End Role="DoctorRoom" EntitySet="DoctorRoom" />
+    </AssociationSet>
+    <AssociationSet Name="AppointmentRoom" Association="MedAllModel.Store.AppointmentRoom">
+      <End Role="Appointment" EntitySet="Appointments" />
+      <End Role="Room" EntitySet="Rooms" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Patients">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="LastName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="PhoneNumer" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Doctors">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="LastName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Specialization" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="PhoneNumber" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Admins">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="RoleId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Appointments">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Date" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Patient_Id" Type="int" Nullable="false" />
+    <Property Name="Doctor_Id" Type="int" Nullable="false" />
+    <Property Name="Room_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Roles">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Rooms">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PatientDoctor">
+    <Key>
+      <PropertyRef Name="Patients_Id" />
+      <PropertyRef Name="Doctors_Id" />
+    </Key>
+    <Property Name="Patients_Id" Type="int" Nullable="false" />
+    <Property Name="Doctors_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DoctorRoom">
+    <Key>
+      <PropertyRef Name="Doctors_Id" />
+      <PropertyRef Name="Rooms_Id" />
+    </Key>
+    <Property Name="Doctors_Id" Type="int" Nullable="false" />
+    <Property Name="Rooms_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="AppointmentPatient">
+    <End Role="Appointment" Type="MedAllModel.Store.Appointments" Multiplicity="*" />
+    <End Role="Patient" Type="MedAllModel.Store.Patients" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Patient">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Appointment">
+        <PropertyRef Name="Patient_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="RoleUser">
+    <End Role="Role" Type="MedAllModel.Store.Roles" Multiplicity="1" />
+    <End Role="User" Type="MedAllModel.Store.Users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="AppointmentDoctor">
+    <End Role="Appointment" Type="MedAllModel.Store.Appointments" Multiplicity="*" />
+    <End Role="Doctor" Type="MedAllModel.Store.Doctors" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Doctor">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Appointment">
+        <PropertyRef Name="Doctor_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="AppointmentRoom">
+    <End Role="Appointment" Type="MedAllModel.Store.Appointments" Multiplicity="*" />
+    <End Role="Room" Type="MedAllModel.Store.Rooms" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Room">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Appointment">
+        <PropertyRef Name="Room_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PatientDoctor_Patient">
+    <End Role="Patient" Type="MedAllModel.Store.Patients" Multiplicity="1" />
+    <End Role="PatientDoctor" Type="MedAllModel.Store.PatientDoctor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Patient">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PatientDoctor">
+        <PropertyRef Name="Patients_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PatientDoctor_Doctor">
+    <End Role="PatientDoctor" Type="MedAllModel.Store.PatientDoctor" Multiplicity="*" />
+    <End Role="Doctor" Type="MedAllModel.Store.Doctors" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Doctor">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PatientDoctor">
+        <PropertyRef Name="Doctors_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DoctorRoom_Doctor">
+    <End Role="Doctor" Type="MedAllModel.Store.Doctors" Multiplicity="1" />
+    <End Role="DoctorRoom" Type="MedAllModel.Store.DoctorRoom" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Doctor">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="DoctorRoom">
+        <PropertyRef Name="Doctors_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DoctorRoom_Room">
+    <End Role="DoctorRoom" Type="MedAllModel.Store.DoctorRoom" Multiplicity="*" />
+    <End Role="Room" Type="MedAllModel.Store.Rooms" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Room">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="DoctorRoom">
+        <PropertyRef Name="Rooms_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MedAllModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="MedAllEntities2" annotation:LazyLoadingEnabled="true" >
+          <EntitySet Name="Patients" EntityType="MedAllModel.Patient" />
+          <EntitySet Name="Doctors" EntityType="MedAllModel.Doctor" />
+          <EntitySet Name="Admins" EntityType="MedAllModel.Admin" />
+          <EntitySet Name="Users" EntityType="MedAllModel.User" />
+          <EntitySet Name="Appointments" EntityType="MedAllModel.Appointment" />
+          <EntitySet Name="Roles" EntityType="MedAllModel.Role" />
+          <EntitySet Name="Rooms" EntityType="MedAllModel.Room" />
+          <AssociationSet Name="PatientDoctor" Association="MedAllModel.PatientDoctor">
+            <End Role="Patient" EntitySet="Patients" />
+            <End Role="Doctor" EntitySet="Doctors" />
+          </AssociationSet>
+          <AssociationSet Name="AppointmentPatient" Association="MedAllModel.AppointmentPatient">
+            <End Role="Appointment" EntitySet="Appointments" />
+            <End Role="Patient" EntitySet="Patients" />
+          </AssociationSet>
+          <AssociationSet Name="RoleUser" Association="MedAllModel.RoleUser">
+            <End Role="Role" EntitySet="Roles" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="AppointmentDoctor" Association="MedAllModel.AppointmentDoctor">
+            <End Role="Appointment" EntitySet="Appointments" />
+            <End Role="Doctor" EntitySet="Doctors" />
+          </AssociationSet>
+          <AssociationSet Name="DoctorRoom" Association="MedAllModel.DoctorRoom">
+            <End Role="Doctor" EntitySet="Doctors" />
+            <End Role="Room" EntitySet="Rooms" />
+          </AssociationSet>
+          <AssociationSet Name="AppointmentRoom" Association="MedAllModel.AppointmentRoom">
+            <End Role="Appointment" EntitySet="Appointments" />
+            <End Role="Room" EntitySet="Rooms" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Patient">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" Nullable="false" />
+          <Property Name="LastName" Type="String" Nullable="false" />
+          <Property Name="PhoneNumer" Type="String" Nullable="false" />
+          <Property Name="Email" Type="String" Nullable="false" />
+          <NavigationProperty Name="Doctors" Relationship="MedAllModel.PatientDoctor" FromRole="Patient" ToRole="Doctor" />
+          <NavigationProperty Name="Appointment" Relationship="MedAllModel.AppointmentPatient" FromRole="Patient" ToRole="Appointment" />
+        </EntityType>
+        <EntityType Name="Doctor">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" Nullable="false" />
+          <Property Name="LastName" Type="String" Nullable="false" />
+          <Property Name="Specialization" Type="String" Nullable="false" />
+          <Property Name="PhoneNumber" Type="String" Nullable="false" />
+          <Property Name="Email" Type="String" Nullable="false" />
+          <NavigationProperty Name="Patients" Relationship="MedAllModel.PatientDoctor" FromRole="Doctor" ToRole="Patient" />
+          <NavigationProperty Name="Appointment" Relationship="MedAllModel.AppointmentDoctor" FromRole="Doctor" ToRole="Appointment" />
+          <NavigationProperty Name="Rooms" Relationship="MedAllModel.DoctorRoom" FromRole="Doctor" ToRole="Room" />
+        </EntityType>
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Email" Type="String" Nullable="false" />
+          <Property Name="Password" Type="String" Nullable="false" />
+          <Property Name="RoleId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Role" Relationship="MedAllModel.RoleUser" FromRole="User" ToRole="Role" />
+        </EntityType>
+        <EntityType Name="Appointment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Date" Type="String" Nullable="false" />
+          <NavigationProperty Name="Patient" Relationship="MedAllModel.AppointmentPatient" FromRole="Appointment" ToRole="Patient" />
+          <NavigationProperty Name="Doctor" Relationship="MedAllModel.AppointmentDoctor" FromRole="Appointment" ToRole="Doctor" />
+          <NavigationProperty Name="Room" Relationship="MedAllModel.AppointmentRoom" FromRole="Appointment" ToRole="Room" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <NavigationProperty Name="Users" Relationship="MedAllModel.RoleUser" FromRole="Role" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Room">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <NavigationProperty Name="Doctors" Relationship="MedAllModel.DoctorRoom" FromRole="Room" ToRole="Doctor" />
+          <NavigationProperty Name="Appointment" Relationship="MedAllModel.AppointmentRoom" FromRole="Room" ToRole="Appointment" />
+        </EntityType>
+        <Association Name="PatientDoctor">
+          <End Type="MedAllModel.Patient" Role="Patient" Multiplicity="*" />
+          <End Type="MedAllModel.Doctor" Role="Doctor" Multiplicity="*" />
+        </Association>
+        <Association Name="AppointmentPatient">
+          <End Type="MedAllModel.Appointment" Role="Appointment" Multiplicity="1" />
+          <End Type="MedAllModel.Patient" Role="Patient" Multiplicity="1" />
+        </Association>
+        <Association Name="RoleUser">
+          <End Type="MedAllModel.Role" Role="Role" Multiplicity="1" />
+          <End Type="MedAllModel.User" Role="User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AppointmentDoctor">
+          <End Type="MedAllModel.Appointment" Role="Appointment" Multiplicity="1" />
+          <End Type="MedAllModel.Doctor" Role="Doctor" Multiplicity="1" />
+        </Association>
+        <Association Name="DoctorRoom">
+          <End Type="MedAllModel.Doctor" Role="Doctor" Multiplicity="*" />
+          <End Type="MedAllModel.Room" Role="Room" Multiplicity="*" />
+        </Association>
+        <Association Name="AppointmentRoom">
+          <End Type="MedAllModel.Appointment" Role="Appointment" Multiplicity="1" />
+          <End Type="MedAllModel.Room" Role="Room" Multiplicity="1" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="MedAllModelStoreContainer" CdmEntityContainer="MedAllEntities2">
+    <EntitySetMapping Name="Patients">
+      <EntityTypeMapping TypeName="IsTypeOf(MedAllModel.Patient)">
+        <MappingFragment StoreEntitySet="Patients">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="PhoneNumer" ColumnName="PhoneNumer" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Doctors">
+      <EntityTypeMapping TypeName="IsTypeOf(MedAllModel.Doctor)">
+        <MappingFragment StoreEntitySet="Doctors">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="Specialization" ColumnName="Specialization" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Admins">
+      <EntityTypeMapping TypeName="IsTypeOf(MedAllModel.Admin)">
+        <MappingFragment StoreEntitySet="Admins">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="IsTypeOf(MedAllModel.User)">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Appointments">
+      <EntityTypeMapping TypeName="IsTypeOf(MedAllModel.Appointment)">
+        <MappingFragment StoreEntitySet="Appointments">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Roles">
+      <EntityTypeMapping TypeName="IsTypeOf(MedAllModel.Role)">
+        <MappingFragment StoreEntitySet="Roles">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Rooms">
+      <EntityTypeMapping TypeName="IsTypeOf(MedAllModel.Room)">
+        <MappingFragment StoreEntitySet="Rooms">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="PatientDoctor" TypeName="MedAllModel.PatientDoctor" StoreEntitySet="PatientDoctor">
+      <EndProperty Name="Patient">
+        <ScalarProperty Name="Id" ColumnName="Patients_Id" />
+      </EndProperty>
+      <EndProperty Name="Doctor">
+        <ScalarProperty Name="Id" ColumnName="Doctors_Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="AppointmentPatient" TypeName="MedAllModel.AppointmentPatient" StoreEntitySet="Appointments">
+      <EndProperty Name="Patient">
+        <ScalarProperty Name="Id" ColumnName="Patient_Id" />
+      </EndProperty>
+      <EndProperty Name="Appointment">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="AppointmentDoctor" TypeName="MedAllModel.AppointmentDoctor" StoreEntitySet="Appointments">
+      <EndProperty Name="Doctor">
+        <ScalarProperty Name="Id" ColumnName="Doctor_Id" />
+      </EndProperty>
+      <EndProperty Name="Appointment">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="DoctorRoom" TypeName="MedAllModel.DoctorRoom" StoreEntitySet="DoctorRoom">
+      <EndProperty Name="Doctor">
+        <ScalarProperty Name="Id" ColumnName="Doctors_Id" />
+      </EndProperty>
+      <EndProperty Name="Room">
+        <ScalarProperty Name="Id" ColumnName="Rooms_Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="AppointmentRoom" TypeName="MedAllModel.AppointmentRoom" StoreEntitySet="Appointments">
+      <EndProperty Name="Room">
+        <ScalarProperty Name="Id" ColumnName="Room_Id" />
+      </EndProperty>
+      <EndProperty Name="Appointment">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
